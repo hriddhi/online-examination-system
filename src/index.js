@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'semantic-ui-css/semantic.min.css';
+=======
+>>>>>>> a5c73209fd6763c135ba04b55a97a193583e5310
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
