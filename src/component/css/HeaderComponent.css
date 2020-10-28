@@ -1,0 +1,12 @@
+.test-Id {
+    position: absolute;
+    right: 0;
+  margin: 0 30px 30px 0;
+  color: #1f75ff;
+}
+
+.Exam-Header{
+    color:  #1f75ff;
+    padding: 16px;
+    background-color:rgb(226, 226, 226);
+}

@@ -1,0 +1,106 @@
+body {
+    overflow-y: hidden;
+}
+
+.question-card {
+    margin-left: 8px;
+    margin-right: 8px;
+    border: none;
+    background-color: transparent;
+}
+
+.Question-Image{
+    height: 70%;
+    width: 70%;
+    display: block;
+    margin: 30px auto;
+}
+
+.answer-card {
+    border: none;
+    background-color: transparent;
+}
+
+.option {
+    border: solid #d4d4d4;
+    border-radius: 10px;
+    border-width: 1px;
+    width: 100%;
+    padding: 16px;
+    margin: 8px 0;
+}
+
+.Option-Image {
+    height: 20vh;
+    border-radius: 10px;
+}
+
+.option:hover {
+    cursor: pointer;
+    background-color: #dbdbdb;
+    border-color: #bdbdbd;
+}
+
+.option:active,
+.option:visited,
+.option:focus {
+    background-color: rgba(1, 170, 1, 0.61);
+    border-color: #159126;
+    color: honeydew;
+}
+
+.question-col {
+    border: solid #f3f3f3;
+    border-width: 0 1px 0 0;
+    margin: 0;
+    padding-right: 0;
+}
+
+.vertical-pagination {
+    height: 40px;
+    width: 40px;
+    display: block;
+    border: solid #dbdbdb;
+    border-radius: 20px;
+    border-width: 2px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 16px;
+    background-color: white;
+}
+
+.vertical-pagination p {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.vertical-pagination:hover {
+    cursor: pointer;
+    background-color: #dbdbdb;
+    border-color: #a5a5a5;
+}
+
+.vertical-pagination:active,
+.vertical-pagination:visited,
+.vertical-pagination:focus {
+    background-color: rgb(1, 170, 1);
+    border-color: #159126;
+    color: honeydew;
+}
+.pagination-holder {
+    position: absolute;
+    right: 0;
+    overflow-y: scroll;
+    height: 90vh;
+}
+ 
+.Submit-Button {
+    position: absolute;
+    right: 0;
+    margin: 10px 35px 24px 0;
+}
+
+.Submit-Button button{
+    width: 100px;
+    border-radius: 25px;
+}
