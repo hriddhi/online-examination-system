@@ -1,28 +1,23 @@
 import * as ActionTypes from './ActionTypes';
 import produce from 'immer';
 
-const Question = produce((
+const Response = produce((
     draft = {
         isLoading: false,
         err: null,
-        question: [],
+        response: [],
         testId: null
     }, action) => {
         switch(action.type){
-            case ActionTypes.FETCH_QUESTION_LOADING:
+            case ActionTypes.ADD_RESPONSE_LOADING:
                 draft.isLoading = true;
                 draft.err = null;
                 return;
 
-            case ActionTypes.FETCH_QUESTION_SUCCESS:
+            case ActionTypes.ADD_RESPONSE_SUCCESSFUL:
                 draft.isLoading = false;
-                draft.question = action.payload;
+                draft.response[action.payload.q] = action.payload.o;
                 draft.err = null;
-                return;
-
-            case ActionTypes.FETCH_QUESTION_FAILED:
-                draft.isLoading = false;
-                draft.err = action.payload;
                 return;
 
             default:
@@ -31,4 +26,4 @@ const Question = produce((
     }
 )
 
-export default Question;
+export default Response;
