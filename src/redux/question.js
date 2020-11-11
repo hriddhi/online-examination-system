@@ -5,8 +5,7 @@ const Question = produce((
     draft = {
         isLoading: false,
         err: null,
-        question: [],
-        testId: null
+        question: []
     }, action) => {
         switch(action.type){
             case ActionTypes.FETCH_QUESTION_LOADING:
@@ -22,7 +21,7 @@ const Question = produce((
 
             case ActionTypes.FETCH_QUESTION_FAILED:
                 draft.isLoading = false;
-                draft.err = action.payload;
+                draft.err = true;
                 return;
 
             default:

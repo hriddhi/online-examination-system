@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, useParams, Redirect } from "react-router-dom";
 import Header1 from './HeaderComponent';
 import Question from './QuestionRenderComponent';
-import Login from './LoginComponent';
+import Landing from './LandingComponent';
 import './css/MainComponent.css';
+
 
 class Main extends React.Component {
 
@@ -10,11 +12,29 @@ class Main extends React.Component {
         return (
             <div className="MainComponent" >
                 <Header1 />
-                <Question />
-                {/* <Login /> */}
+                <Router>
+                    <Switch>
+                        <Route exact path='/test' children={<Question />} />  
+                        <Route exact path="/:test_id" children={<Child />} />
+                    </Switch>
+                </Router>
+                {/* <Question /> */}
+                {/* <Landing /> */}
             </div>
         );
     }
 }
+
+function Child() {
+    // We can use the `useParams` hook here to access
+    // the dynamic pieces of the URL.
+    let { test_id } = useParams();
+  
+    return (
+      <div>
+        <Landing test_id={test_id} />
+      </div>
+    );
+  }
 
 export default Main;

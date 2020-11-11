@@ -5,6 +5,22 @@ import './css/HeaderComponent.css';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Timer from 'react-compound-timer';
+import { connect } from 'react-redux';
+import { fetchQuestion, addResponse, verifyTest } from '../redux/ActionCreator';
+
+const mapStateToProps = state => {
+    return {
+        question: state.question,
+        response: state.response,
+        test: state.test
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchQuestion: () => dispatch(fetchQuestion()),
+    addResponse: (val) => dispatch(addResponse(val)),
+    verifyTest: (val) => dispatch(verifyTest(val))
+})
 
 class Header1 extends React.Component {
 
@@ -12,54 +28,58 @@ class Header1 extends React.Component {
         super(props);
 
         this.state = {
-            testId: '32471898234',
-            totalTime: 1800
+            totalTime: null,
+            showTimer: false
         }
-        this.startTimer = this.startTimer.bind(this);
-    }    
-
-    componentDidMount(){
-        this.startTimer();
     }
 
-    convertSecondToTime = () =>{
-        var remainingtMin = this.state.totalTime / 60;
-        var remainingSec = this.state.totalTime % 60;
+    convertSecondToTime = () => {
+        let divisor_for_minutes = this.state.totalTime % (60 * 60);
+        let minutes = Math.floor(divisor_for_minutes / 60);
+
+        let divisor_for_seconds = divisor_for_minutes % 60;
+        let seconds = Math.ceil(divisor_for_seconds);
+        
         return {
-            M : remainingtMin,
-            S : remainingSec 
+            M : minutes,
+            S : seconds 
         }
-    }
-
-    countdown = () => {
-        setInterval(() => {
-            this.setState({totalTime: this.state.totalTime - 1})
-        }, 1000) 
     }
 
     startTimer = () => {
-        while(this.state.totalTime !== 0){
-            this.countdown();
-        }
+        this.setState({ totalTime: this.props.test.time, showTimer: true })
+        var timer = setInterval(() => {
+            this.setState({totalTime: this.state.totalTime - 1})
+            if (this.state.totalTime <= 0) {
+                console.log('\ncomplete\n');
+                clearInterval(timer);
+            }
+        }, 1000);
     }
 
+   
+
     render(){
-        console.log('in header render');
-        const value = 10;
+        if(this.props.test.started && !this.state.showTimer)
+            this.startTimer();
+        
         return(
             <div>
                 <Navbar className="Exam-Header" fixed expand="md">
                     <NavbarBrand><h2 style={{color: '#262626'}}><Icon name="book"></Icon>Exam Portal</h2></NavbarBrand>
                         <Nav className="mr-auto" navbar>
-                            <NavbarText style={{color: '#262626'}}><b>Test ID: </b>{this.state.testId}</NavbarText>
-                            <div style={{height:45, width: 45}}>
-                                <CircularProgressbar value={this.convertSecondToTime().S} maxValue={60} strockWidth={20} 
-                                    text={this.convertSecondToTime().M} styles={buildStyles({textSize: 35})}/>
-                            </div>
+                            <NavItem>
+                                <NavbarText style={{color: '#262626'}}><b>Test ID: </b>{this.props.test.testID}</NavbarText>
+                            </NavItem>
+                            
                             {/* <NavItem>
                                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
                             </NavItem> */}
                         </Nav>
+                        <div className={this.state.showTimer ? 'ml-auto' : 'ml-auto d-none'} style={{height:40, width: 40}}>
+                                <CircularProgressbar value={this.convertSecondToTime().S} maxValue={60} strokeWidth={12}
+                                    text={this.convertSecondToTime().M} styles={buildStyles({textSize: '28px'})}/>
+                        </div>
                         
                     
                 </Navbar>
@@ -68,4 +88,4 @@ class Header1 extends React.Component {
     }
 }
 
-export default Header1;
+export default connect(mapStateToProps, mapDispatchToProps)(Header1);

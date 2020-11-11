@@ -10,10 +10,9 @@ body {
 }
 
 .Question-Image{
-    height: 70%;
-    width: 70%;
+    max-width: 60%;
     display: block;
-    margin: 30px auto;
+    margin: 24px auto;
 }
 
 .answer-card {

@@ -10,12 +10,13 @@ import { fetchQuestion, addResponse } from '../redux/ActionCreator';
 const mapStateToProps = state => {
     return {
         question: state.question,
-        response: state.response
+        response: state.response,
+        test: state.test
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchQuestion: () => dispatch(fetchQuestion()),
+    fetchQuestion: (val) => dispatch(fetchQuestion(val)),
     addResponse: (val) => dispatch(addResponse(val))
 })
 
@@ -25,14 +26,13 @@ class Question extends React.Component {
         super(props);
 
         this.state = {
-            testId: '32471898234',
             current_q: 0,
             selected_o: null
         }
     }
 
     componentWillMount(){
-        this.props.fetchQuestion();
+        this.props.fetchQuestion(this.props.test.testID);
     }
 
     changeQuestion = (val) => {
@@ -44,7 +44,11 @@ class Question extends React.Component {
     }
 
     render(){
-        if(this.props.question.question.length === 0)
+        if(this.props.question.err)
+            return (
+                <h1>ERROR 404: NOT FOUND</h1>
+            )
+        else if(this.props.question.question.length === 0 || this.props.question.isLoading)
             return (
                 <div className="d-flex" style={{height: '90vh'}}>
                     <div className="m-auto">
