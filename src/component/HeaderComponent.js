@@ -18,16 +18,14 @@ class Header1 extends React.Component {
         return(
             <div>
                 <Navbar className="Exam-Header" fixed expand="md">
-                    <NavbarBrand href="/"><h2><Icon name="book"></Icon>Exam Portal</h2></NavbarBrand>
+                    <NavbarBrand><h2 style={{color: '#262626'}}><Icon name="book"></Icon>Exam Portal</h2></NavbarBrand>
                         <Nav className="mr-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/components/">Username</NavLink>
-                            </NavItem>
+                            <NavbarText style={{color: '#262626'}}><b>Test ID: </b>{this.state.testId}</NavbarText>
                             {/* <NavItem>
                                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
                             </NavItem> */}
                         </Nav>
-                        <NavbarText><b>Test ID: {this.state.testId}</b></NavbarText>
+                        
                     
                 </Navbar>
             </div>
