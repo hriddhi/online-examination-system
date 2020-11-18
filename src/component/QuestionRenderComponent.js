@@ -116,8 +116,8 @@ class Question extends React.Component {
                                                 (() => {
                                                     if(this.props.response.isLoading)
                                                         return <Button disabled color="warning"><Spinner style={{marginTop: -2}} size="sm" color="white" /></Button>
-                                                    //else if(this.state.selected_o === null)
-                                                      //  return <Button color="warning">Submit</Button>
+                                                    else if(this.state.selected_o === null)
+                                                        return <Button disabled color="warning">Submit</Button>
                                                     else if(this.state.selected_o === this.props.response.response[this.state.current_q])
                                                         return <Button disabled color="success">Submitted</Button>
                                                     else

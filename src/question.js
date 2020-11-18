@@ -3,6 +3,18 @@ const question = [{
     question: [
         {
             id: 1,
+            q: "Find the odd number/letters from the given alternative.",
+            q_image: false,
+            o: ["Swimming", "Sailing", "Diving", "Driving"]
+        },
+        {
+            id: 1,
+            q: "What is the right way to initialize array?",
+            q_image: false,
+            o: ["int num[6] = {2,4,12,5,3,7}", "int n{} = {1,2,3,4,5,6}", "int n{6} = {1,2,4}", "int n(6) = {2,3,7,1,5,9}"]
+        },
+        {
+            id: 1,
             q: "A alone can do a piece of work in 6 days and B alone in 8 days. A and B undertook to do it for Rs. 3200. With the help of C, they completed the work in 3 days. How much is to be paid to C?",
             q_image: false,
             o: ["Rs 200", "Rs 500", "Rs 320", "Rs 670"]
