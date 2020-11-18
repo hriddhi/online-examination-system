@@ -3,7 +3,7 @@ import produce from 'immer';
 
 const Test = produce((
     draft = {
-        isLoading: false,
+        started: false,
         err: null,
         testID: null,
         questionID: null,
@@ -25,6 +25,10 @@ const Test = produce((
 
             case ActionTypes.START_TIMER:
                 draft.started = true;
+                return;
+
+            case ActionTypes.VERIFY_TEST_COMPLETE:    
+                draft.started = false;
                 return;
 
             default:

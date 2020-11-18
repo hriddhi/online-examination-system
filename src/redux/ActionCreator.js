@@ -4,8 +4,10 @@ import TEST from '../test';
 
 export const verifyTest = (id) => (dispatch) => {
     var index = TEST.findIndex((val) => val.id === id)
-    if(index !== -1)
+    if(index !== -1){
         dispatch(verifyTestSuccess(TEST[index]))
+        console.log(index)
+    }
     else
         dispatch(verifyTestFailed())
 }
@@ -27,12 +29,12 @@ export const fetchQuestion = (id) => (dispatch) => {
     
     setTimeout(() => {
         var index = QUESTION.findIndex((val) => val.id === id)
-        if(index !== -1)
+        if(index !== -1){
             dispatch(fetchQuestionSuccess(QUESTION[index].question));
-        else
+            dispatch(startTimer());
+        } else
             dispatch(fetchQuestionFailed())
         
-        dispatch(startTimer());
     }, 3000)
     
 }
@@ -73,4 +75,10 @@ export const addResponseLoading = () => ({
 export const addResponseSuccess = (data) => ({
     type: ActionTypes.ADD_RESPONSE_SUCCESSFUL,
     payload: data
+})
+
+//-----------------------------------------------------
+
+export const testcomplete = () => ({
+    type: ActionTypes.VERIFY_TEST_COMPLETE
 })

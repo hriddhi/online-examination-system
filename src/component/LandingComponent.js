@@ -7,7 +7,7 @@ import {
 import { BrowserRouter as Router, Switch, Route, Link, useParams, Redirect, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { fetchQuestion, addResponse, verifyTest } from '../redux/ActionCreator';
-
+import './css/LandingComponent.css';
 const mapStateToProps = state => {
     return {
         question: state.question,
@@ -35,16 +35,16 @@ class Landing extends React.Component {
     render(){
         return (
             <div className='d-flex' style={{height: 600}}>
-                <Card className='m-auto p-2'>
+                <Card className='m-auto p-2 landingCard'>
                     <CardBody style={{width: 500}}>
-                        <CardTitle tag="h3">Card title</CardTitle>
-                        Exam Name: NAME GOES HERE<br/>
-                        Exam Duration: {this.props.test.time / 60} min<br/>
+                        <CardTitle className="LandingHeader" tag="h2">Instructions</CardTitle>
+                        <span className="LandingInstructions" >Exam Name:</span> NAME GOES HERE<br/>
+                        <span className="LandingInstructions" >Exam Duration:</span> <span style={{color: 'red'}}><strong>{this.props.test.time / 60} min</strong></span><br/><br/>
                         
-                        Instructions:<br/>
-                        1. Each question carry 1 marks.<br/>
-                        2. You can switch between questions.<br/>
-                        3. Switching Tabs is prohibited.<br/>
+                        <span className="LandingInstructions" ><strong><h3>Instructions:</h3></strong></span><br/>
+                        <strong>1.</strong> Each question carry 1 marks.<br/>
+                        <strong>2.</strong> You can switch between questions.<br/>
+                        <strong>3.</strong> Switching Tabs is prohibited.<br/>
                         <div className='d-flex pt-4' >
                             <Button className='mx-auto' color='success' style={{borderRadius: 50}} onClick={()=> this.onStartClick()}>Start Exam</Button>
                         </div>

@@ -2,11 +2,11 @@ import React from 'react';
 import { Header, Icon } from 'semantic-ui-react';
 import { Nav, NavItem, NavLink, Navbar, NavbarBrand, NavbarText } from 'reactstrap';
 import './css/HeaderComponent.css';
+import { BrowserRouter as Router, Switch, Route, Link, useParams, Redirect, withRouter } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import Timer from 'react-compound-timer';
 import { connect } from 'react-redux';
-import { fetchQuestion, addResponse, verifyTest } from '../redux/ActionCreator';
+import { fetchQuestion, addResponse, verifyTest, testcomplete } from '../redux/ActionCreator';
 
 const mapStateToProps = state => {
     return {
@@ -19,7 +19,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
     fetchQuestion: () => dispatch(fetchQuestion()),
     addResponse: (val) => dispatch(addResponse(val)),
-    verifyTest: (val) => dispatch(verifyTest(val))
+    verifyTest: (val) => dispatch(verifyTest(val)),
+    testcomplete: () => dispatch(testcomplete())
 })
 
 class Header1 extends React.Component {
@@ -53,6 +54,11 @@ class Header1 extends React.Component {
             if (this.state.totalTime <= 0) {
                 console.log('\ncomplete\n');
                 clearInterval(timer);
+                this.props.history.replace('/complete');
+                this.setState({showTimer: false})
+                return (
+                    this.props.testcomplete
+                )
             }
         }, 1000);
     }
@@ -88,4 +94,4 @@ class Header1 extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header1);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header1));

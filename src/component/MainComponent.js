@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useParams, Redirect } fro
 import Header1 from './HeaderComponent';
 import Question from './QuestionRenderComponent';
 import Landing from './LandingComponent';
+import Complete from './CompleteComponent';
 import './css/MainComponent.css';
 
 
@@ -11,9 +12,10 @@ class Main extends React.Component {
     render(){
         return (
             <div className="MainComponent" >
-                <Header1 />
                 <Router>
+                    <Header1 />
                     <Switch>
+                        <Route exact path="/complete" children={<Complete />} />
                         <Route exact path='/test' children={<Question />} />  
                         <Route exact path="/:test_id" children={<Child />} />
                     </Switch>
