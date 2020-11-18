@@ -33,6 +33,11 @@ class Landing extends React.Component {
     }
 
     render(){
+        if(this.props.test.err)
+            return (
+                <h1>Exam not found</h1>
+            )
+        else
         return (
             <div className='d-flex' style={{height: 600}}>
                 <Card className='m-auto p-2 landingCard'>

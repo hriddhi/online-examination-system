@@ -54,7 +54,7 @@ class Header1 extends React.Component {
             if (this.state.totalTime <= 0) {
                 console.log('\ncomplete\n');
                 clearInterval(timer);
-                this.props.history.replace('/complete');
+                this.props.history.replace('/complete')
                 this.setState({showTimer: false})
                 return (
                     this.props.testcomplete
@@ -82,7 +82,7 @@ class Header1 extends React.Component {
                                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
                             </NavItem> */}
                         </Nav>
-                        <div className={this.state.showTimer ? 'ml-auto' : 'ml-auto d-none'} style={{height:40, width: 40}}>
+                        <div className={this.props.test.started ? 'ml-auto' : 'ml-auto d-none'} style={{height:40, width: 40}}>
                                 <CircularProgressbar value={this.convertSecondToTime().S} maxValue={60} strokeWidth={12}
                                     text={this.convertSecondToTime().M} styles={buildStyles({textSize: '28px'})}/>
                         </div>

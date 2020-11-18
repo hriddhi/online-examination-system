@@ -169,3 +169,15 @@ body {
     width: 100px;
     border-radius: 25px;
 }
+
+.Finish-Button {
+    position: absolute;
+    right: 10;
+    margin: 10px 35px 24px 0;
+}
+
+.Finish-Button button{
+    width: 100px;
+    border-radius: 25px;
+}
+

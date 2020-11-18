@@ -7,7 +7,6 @@ const Test = produce((
         err: null,
         testID: null,
         questionID: null,
-        started: false,
         time: null
     }, action) => {
         switch(action.type){
@@ -25,6 +24,10 @@ const Test = produce((
 
             case ActionTypes.START_TIMER:
                 draft.started = true;
+                return;
+
+            case ActionTypes.STOP_TIMER:
+                draft.started = false;
                 return;
 
             case ActionTypes.VERIFY_TEST_COMPLETE:    

@@ -6,6 +6,7 @@ import {
 import './css/question.css';
 import { connect } from 'react-redux';
 import { fetchQuestion, addResponse } from '../redux/ActionCreator';
+import { BrowserRouter as Router, Switch, Route, Link, useParams, Redirect, withRouter } from "react-router-dom";
 
 const mapStateToProps = state => {
     return {
@@ -124,6 +125,9 @@ class Question extends React.Component {
                                                 })() 
                                             }
                                         </div>
+                                        <div className="Finish-Button">
+                                            { this.state.current_q === this.props.question.question.length - 1 ? <Button color="success" onClick={()=>this.props.history.replace('/complete')}>Finish</Button> : null }
+                                        </div>
                                     </CardBody>
                                 </Card>
                                
@@ -148,4 +152,4 @@ class Question extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Question);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Question));
